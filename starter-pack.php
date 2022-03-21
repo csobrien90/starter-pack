@@ -16,6 +16,7 @@ Copyright(C) 2022, Chad O'Brien - obrien.music@gmail.com
 
 */
 
+require_once 'functions.php';
 
 function starter_pack_activate() {
 	if ( !current_user_can('activate_plugins') ) return;
@@ -29,15 +30,14 @@ function starter_pack_deactivate() {
 register_deactivation_hook(__FILE__, 'starter_pack_deactivate');
 
 function starter_pack_admin() {
-
 	?>
 	<header class="wrap">
 		<h1 class="wp-heading-inline">Starter Pack Options</h1>
         <p><em>Jumpstart devving on any WordPress site with these starter functions.</em></p>
         <hr>
 	</header>
-    <section>Documentation goes here</section>
 	<?php
+    require_once 'documentation.php';
 }
 
 function add_starter_pack_dashboard_menu_item() {
@@ -47,12 +47,8 @@ function add_starter_pack_dashboard_menu_item() {
 		'manage_options',
 		'starter-pack-admin',
 		'starter_pack_admin',
-		'dashicons-buddicons-replies',
+		'dashicons-laptop',
 		6
 	);
 }
 add_action( 'admin_menu', 'add_starter_pack_dashboard_menu_item', 999 );
-
-function load_functions_first() {
-    require 'functions.php';
-}
