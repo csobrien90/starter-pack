@@ -1,0 +1,58 @@
+<?php
+
+/*
+
+Plugin Name: Starter Pack
+Plugin URI: 
+Description: A WordPress plugin to jumpstart devving on any WordPress site
+Author: Chad O'Brien
+Author URI: https://github.com/csobrien90
+Version: 0.1
+Text Domain: plugin-starter-pack
+License: GPL v3
+Requires PHP: 7.2
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Copyright(C) 2022, Chad O'Brien - obrien.music@gmail.com
+
+*/
+
+
+function starter_pack_activate() {
+	if ( !current_user_can('activate_plugins') ) return;
+    // Activation Code
+}
+register_activation_hook(__FILE__, 'starter_pack_activate');
+
+function starter_pack_deactivate() {
+	//Deactivation code
+}
+register_deactivation_hook(__FILE__, 'starter_pack_deactivate');
+
+function starter_pack_admin() {
+
+	?>
+	<header class="wrap">
+		<h1 class="wp-heading-inline">Starter Pack Options</h1>
+        <p><em>Jumpstart devving on any WordPress site with these starter functions.</em></p>
+        <hr>
+	</header>
+    <section>Documentation goes here</section>
+	<?php
+}
+
+function add_starter_pack_dashboard_menu_item() {
+	add_menu_page(
+		'Starter Pack',
+		'Starter Pack',
+		'manage_options',
+		'starter-pack-admin',
+		'starter_pack_admin',
+		'dashicons-buddicons-replies',
+		6
+	);
+}
+add_action( 'admin_menu', 'add_starter_pack_dashboard_menu_item', 999 );
+
+function load_functions_first() {
+    require 'functions.php';
+}
