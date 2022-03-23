@@ -25,6 +25,13 @@
                     to programmatically created users.
                 </p>
             </li>
+            <li class="documentation-function">
+                <h4>registration_password_strength()</h4>
+                <p><em>Require all new users to register with a sufficiently strong password.</em></p>
+                <p>Passwords must be at least eight characters and haveat least one lowercase, uppercase, 
+                    number, and special character.
+                </p>
+            </li>
         </ul>
     </article>
 </section>
