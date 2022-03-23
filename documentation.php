@@ -1,7 +1,7 @@
 <section class="documentation">
     <h2>Documentation</h2>
     <article class="documentation-function-group">
-        <h3>Utiliy functions</h3>
+        <h3>Utility functions</h3>
         <ul class="documentation-function-group-list">
             <li class="documentation-function">
                 <h4>debug( $var, $die = false )</h4>
