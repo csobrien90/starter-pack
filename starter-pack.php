@@ -52,3 +52,16 @@ function add_starter_pack_dashboard_menu_item() {
 	);
 }
 add_action( 'admin_menu', 'add_starter_pack_dashboard_menu_item', 999 );
+
+function load_sp_first()
+{
+	$path = str_replace( WP_PLUGIN_DIR . '/', '', __FILE__ );
+	if ( $plugins = get_option( 'active_plugins' ) ) {
+		if ( $key = array_search( $path, $plugins ) ) {
+			array_splice( $plugins, $key, 1 );
+			array_unshift( $plugins, $path );
+			update_option( 'active_plugins', $plugins );
+		}
+	}
+}
+add_action( 'activated_plugin', 'load_sp_first' );
