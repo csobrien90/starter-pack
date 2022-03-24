@@ -6,10 +6,10 @@
             <li class="documentation-function">
                 <h4>debug( $var, $die = false )</h4>
                 <p><em>Print $var, deciding whether to die after</em></p>
-                <code>
-                    echo '&ltpre&gt', print_r($var), '&lt/pre&gt';<br>
-                    if( $die ) die();
-                </code>
+            </li>
+            <li class="documentation-function">
+                <h4>function find_in_array( $search_term, $array )</h4>
+                <p><em>Find first instance of $search_term in a multidimensional $array and return the path</em></p>
             </li>
         </ul>
     </article>
