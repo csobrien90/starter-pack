@@ -8,8 +8,8 @@
                 <p><em>Print $var, deciding whether to die after</em></p>
             </li>
             <li class="documentation-function">
-                <h4>function find_in_array( $search_term, $array )</h4>
-                <p><em>Find first instance of $search_term in a multidimensional $array and return the path</em></p>
+                <h4>            function deep_search( $search_term, $array_or_object )</h4>
+                <p><em>Find first instance of $search_term in any combination of nested arrays and object, then return the path</em></p>
             </li>
         </ul>
     </article>
