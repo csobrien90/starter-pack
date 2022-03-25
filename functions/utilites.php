@@ -6,23 +6,54 @@ function debug( $var, $die = false ) {
     if( $die ) die();
 }
 
-function find_in_array( $search_term, $array ) {
+function deep_search( $search_term, $array_or_object ) {
 
-    function recursive_find( $search_term, $array ) {
+    function find_in_array( $search_term, $array ) {
         if ( ! is_array( $array ) ) return false;
         foreach ( $array as $key => $value ) {
             if ( $value == $search_term ) {
                 return $key;
             } else if ( is_array( $value ) ) {
-                $key_result = recursive_find( $search_term, $value );
+                $key_result = find_in_array( $search_term, $value );
                 if ( $key_result !== false ) {
-                    return $key . ' => ' . $key_result;
+                    return $key . '-' . $key_result;
                 }
             }
         }
         return false;
     }
 
-    $result = recursive_find( $search_term, $array );
-    return $result . " => $search_term";
+    function build_path( $path, $search_term, $array_or_object ) {
+        $path_array = explode( '-', $path );
+        $layer_type = [];
+        $layer_type[] = gettype( $array_or_object );
+        $target = $array_or_object;
+        foreach( $path_array as $index => $layer ) {
+            if ( $layer_type[$index] === 'object' ) {
+                $layer_type[$index + 1] = gettype( $target->$layer );
+                $target = $target->$layer;
+            } elseif ( $layer_type[$index] === 'array' ) {
+                $layer_type[$index + 1] = gettype( $target[$layer] );
+                $target = $target[$layer];
+            }
+        }
+        $actual_path = '$var';
+        foreach( $layer_type as $index => $type ) {
+            switch ($type) {
+                case 'object':
+                    $actual_path .= '->' . $path_array[$index];
+                    break;
+                case 'array':
+                    $actual_path .= "['" . $path_array[$index] . "']";
+                    break;
+                default:
+                    $actual_path .= ' = ' . $search_term;
+            }
+        }
+        return $actual_path;
+    }
+    
+    $array = json_decode(json_encode($array_or_object), true);
+    $result = build_path(find_in_array( $search_term, $array ), $search_term, $array_or_object );
+    return $result;
 }
