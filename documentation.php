@@ -36,6 +36,10 @@
                     number, and special character.
                 </p>
             </li>
+            <li class="documentation-function">
+                <h4>disable_comments()</h4>
+                <p><em>Remove all comment functionality</em></p>
+            </li>
         </ul>
     </article>
 </section>

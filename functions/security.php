@@ -54,3 +54,35 @@ function registration_password_strength( $errors, $user_login, $user_email ) {
 	return $errors;
 }
 add_filter( 'registration_errors', 'registration_password_strength', 10, 3 );
+
+function disable_comments() {
+	add_action( 'admin_init', function() {
+		remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
+
+		global $pagenow;
+		if ( $pagenow === 'edit-comments.php' ) {
+			wp_redirect( admin_url() );
+			exit;
+		}
+		
+		$post_types = get_post_types();
+		foreach ( $post_types as $post_type ) {
+			if ( post_type_supports($post_type, 'comments') ) {
+				remove_post_type_support($post_type, 'comments');
+				remove_post_type_support($post_type, 'trackbacks');
+			}
+		}
+	});
+
+	add_action( 'init', function() {
+		if ( is_admin_bar_showing() ) {
+			remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
+		}
+	});
+
+	add_action( 'admin_menu', function() {remove_menu_page('edit-comments.php');} );
+	add_filter( 'comments_open', function() {return false;} );
+	add_filter( 'pings_open', function() {return false;} );
+	add_filter( 'comments_array', function() {return array();} );
+}
+add_action( 'plugins_loaded', 'disable_comments' );
