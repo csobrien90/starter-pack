@@ -6,6 +6,10 @@ function debug( $var, $die = false ) {
     if( $die ) die();
 }
 
+function log_this( $var ) {
+    echo '<script>console.log('.json_encode($var).')</script>';
+}
+
 function deep_search( $search_term, $array_or_object ) {
 
     function find_in_array( $search_term, $array ) {
