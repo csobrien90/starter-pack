@@ -30,14 +30,7 @@ function starter_pack_deactivate() {
 register_deactivation_hook(__FILE__, 'starter_pack_deactivate');
 
 function starter_pack_admin() {
-	?>
-	<header class="wrap">
-		<h1 class="wp-heading-inline">Starter Pack Options</h1>
-        <p><em>Jumpstart devving on any WordPress site with these starter functions.</em></p>
-        <hr>
-	</header>
-	<?php
-    require_once 'documentation.php';
+    require_once 'markdown/page-admin.php';
 }
 
 function add_starter_pack_dashboard_menu_item() {
