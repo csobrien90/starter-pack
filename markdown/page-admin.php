@@ -5,11 +5,11 @@
 </header>
 <main>
     <nav>
-        <a class="btn btn-secondary">Utilities</a>
-        <a class="btn btn-secondary">Security</a>
-        <a class="btn btn-secondary">Enqueues</a>
-        <a class="btn btn-secondary">Allowed Mime Types</a>
-        <a class="btn btn-secondary">Common Code Snippets</a>
+        <a id="utilities-link" class="btn btn-secondary">Utilities</a>
+        <a id="security-link" class="btn btn-secondary">Security</a>
+        <a id="enqueues-link" class="btn btn-secondary">Enqueues</a>
+        <a id="mime-types-link" class="btn btn-secondary">Allowed Mime Types</a>
+        <a id="code-snippets-link" class="btn btn-secondary">Common Code Snippets</a>
     </nav>
     <div class="admin-content-wrapper">
         <section id="utilities" class="sp-settings-panel">
