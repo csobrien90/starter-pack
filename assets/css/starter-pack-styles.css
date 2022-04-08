@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  margin-top: 1rem;
 }
 .admin-content-wrapper .sp-settings-panel {
   position: absolute;
