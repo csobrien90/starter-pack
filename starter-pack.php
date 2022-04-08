@@ -30,7 +30,7 @@ function starter_pack_deactivate() {
 register_deactivation_hook(__FILE__, 'starter_pack_deactivate');
 
 function starter_pack_admin() {
-    require_once 'markdown/page-admin.php';
+    require_once 'content/page-admin.php';
 }
 
 function add_starter_pack_dashboard_menu_item() {
