@@ -1,18 +1,15 @@
 .admin-content-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
-.sp-settings-panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    transition: all .5s;
+.admin-content-wrapper .sp-settings-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-#utilities {
-    max-width: 100vw;
+.admin-content-wrapper #security, .admin-content-wrapper #enqueues, .admin-content-wrapper #mime-types, .admin-content-wrapper #code-snippets {
+  display: none;
 }
-#security, #enqueues, #mime-types, #code-snippets {
-    max-width: 0px;
-}
+
+/*# sourceMappingURL=starter-pack-styles.css.map */
