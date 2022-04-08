@@ -54,7 +54,7 @@
 						type="checkbox"
 						id="disable_comments"
 						name="disable_comments"
-						<?php $checked = in_array( 'disable_comments', $security_settings ) ? 'checked' : ''; ?>
+						<?php $checked = in_array( 'disable_comments', $security_settings ) ? 'checked' : ''; echo $checked; ?>
 					>
 					<span class="slider round"></span>
 				</div>

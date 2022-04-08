@@ -49,7 +49,10 @@ jQuery(function($) {
 				data : formData,
 				success: function(response) {
 					if ( response.message ) {
-						$(`#save-${setting}-settings-ajax-response`).text(response.message);
+						$(`#save-${setting}-settings-ajax-response`).text(response.message).show();
+						setTimeout(() => {
+							$(`#save-${setting}-settings-ajax-response`).fadeOut(800);
+						}, 2000);
 					} else {
 						console.log(response);
 					};

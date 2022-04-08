@@ -10,14 +10,14 @@ function save_enqueue_settings() {
 
 	if ( isset($_POST['settings']) && !empty($_POST['settings']) && is_array($_POST['settings']) ) {
 		$settings = [];
-		foreach ( $_POST['settings'] as $key => $value ) {
-			$settings[sanitize_text_field($key)] = sanitize_text_field($value);
+		foreach ( $_POST['settings'] as $value ) {
+			$settings[] = sanitize_text_field($value);
 		}
 		$result = update_option( 'sp_enqueue_settings', $settings );
 		if ( $result ) {
 			$output->message = 'Enqueue settings saved successfully.';
 		} else {
-			$output->message = 'Unable to save enqueue settings.';
+			$output->message = 'Unable to save enqueue settings. Confirm settings have been changed and try again.';
 		}
 	} else {
 		$output->message = 'Unable to save enqueue settings - empty or invalid format.';
@@ -40,14 +40,14 @@ function save_security_settings() {
 
 	if ( isset($_POST['settings']) && !empty($_POST['settings']) && is_array($_POST['settings']) ) {
 		$settings = [];
-		foreach ( $_POST['settings'] as $key => $value ) {
-			$settings[sanitize_text_field($key)] = sanitize_text_field($value);
+		foreach ( $_POST['settings'] as $value ) {
+			$settings[] = sanitize_text_field($value);
 		}
 		$result = update_option( 'sp_security_settings', $settings );
 		if ( $result ) {
 			$output->message = 'Security settings saved successfully.';
 		} else {
-			$output->message = 'Unable to save security settings.';
+			$output->message = 'Unable to save security settings. Confirm settings have been changed and try again.';
 		}
 	} else {
 		$output->message = 'Unable to save security settings - empty or invalid format.';
