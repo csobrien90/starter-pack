@@ -105,6 +105,7 @@
 	</p>
 	<div class="set-mime-types-wrapper">
 		<form class="mime-type-input">
+			<h3>Add MIME type</h3>
 			<label>
 				Select from common MIME types:
 				<br>
@@ -117,22 +118,29 @@
 				?>
 				</datalist>
 			</label>
-			<p>or white list a custom MIME type {link}</p>
+			<button class="btn btn-primary">Add common MIME type</button>
+			<p id="show-custom-mime-input"><em>White list a custom MIME type</em></p>
 			<div class="custom-mime-wrapper">
-				<label for="custom-mime-input-name">
+				<p>
+					You can allow upload of any file type but do be aware that many extensions, such as .exe and .zip, can present serious security threats.
+					If you cannot find a filetype in the common MIME types above, you may add a custom MIME type below. For reference, see this list of  
+					<a href="https://www.freeformatter.com/mime-types-list.html" target="_blank">officially recognized MIME types</a>.
+				</p>
+				<label>
 					MIME name:
 					<br>
-					<input type="text" id="custom-mime-name" name="custom-mime-name" />
+					<input type="text" id="custom-mime-name" name="custom-mime-name" placeholder="Ex. 'png'" />
 				</label>
-				<label for="custom-mime-desc">
+				<label>
 					MIME description:
 					<br>
-					<input type="text" id="custom-mime-desc" name="custom-mime-desc" />
+					<input type="text" id="custom-mime-desc" name="custom-mime-desc" placeholder="Ex. 'image/png'" />
 				</label>
+				<button class="btn btn-primary">Add custom MIME type</button>
 			</div>
-			<button class="btn btn-primary">Add MIME type</button>
 		</form>
 		<div class="view-and-remove-mime-types">
+			<h3>Remove MIME type</h3>
 			<select class="current-allowed-mime-types" size="10">
 				<?php
 					foreach ( $allowed_mime_types as $mime_name => $$mime_desc ) {
