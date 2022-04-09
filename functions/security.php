@@ -94,3 +94,9 @@ if ( in_array( 'disable_comments', $security_settings ) ) {
 	}
 	add_action( 'plugins_loaded', 'disable_comments' );
 }
+
+function sp_allow_mime_types( $mime_types ) {
+	$allowed_mime_types = get_option('sp_allowed_mime_types') ?: [];
+	return $allowed_mime_types;
+}
+add_filter( 'upload_mime_types', 'sp_allow_mime_types' );
