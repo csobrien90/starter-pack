@@ -14,8 +14,10 @@ jQuery(function($) {
 			spSettingsPanels.forEach(panel => {
 				if ( panel === section ) {
 					$(`#${panel}`).show();
+					$(`#${panel}-link`).addClass('nav-tab-active');
 				} else {
 					$(`#${panel}`).hide();
+					$(`#${panel}-link`).removeClass('nav-tab-active');
 				}
 			});
 		});

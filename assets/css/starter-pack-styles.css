@@ -70,6 +70,10 @@ input:checked + .slider:before {
 }
 
 /* Page Styles */
+.nav-tab {
+  cursor: pointer;
+}
+
 .admin-content-wrapper {
   position: relative;
   width: 100%;

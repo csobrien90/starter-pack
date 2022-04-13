@@ -4,12 +4,12 @@
     <hr>
 </header>
 <main>
-    <nav>
-        <a id="utilities-link" class="btn btn-secondary">Utilities</a>
-        <a id="security-link" class="btn btn-secondary">Security</a>
-        <a id="enqueues-link" class="btn btn-secondary">Enqueues</a>
-        <a id="mime-types-link" class="btn btn-secondary">Allowed Mime Types</a>
-        <a id="code-snippets-link" class="btn btn-secondary">Common Code Snippets</a>
+    <nav class="nav-tab-wrapper">
+        <a id="utilities-link" class="nav-tab nav-tab-active">Utilities</a>
+        <a id="security-link" class="nav-tab">Security</a>
+        <a id="enqueues-link" class="nav-tab">Enqueues</a>
+        <a id="mime-types-link" class="nav-tab">Allowed Mime Types</a>
+        <a id="code-snippets-link" class="nav-tab">Common Code Snippets</a>
     </nav>
     <div class="admin-content-wrapper">
         <section id="utilities" class="sp-settings-panel">
