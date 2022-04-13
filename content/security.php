@@ -65,6 +65,6 @@
 			<p><em>Remove all comment functionality</em></p>
 		</li>
 	</ul>
-	<button id="save-security-settings" class="btn btn-primary" data-nonce="<?php echo wp_create_nonce("save-security-settings-nonce"); ?>">Save Security Settings</button>
+	<button id="save-security-settings" class="btn btn-secondary" data-nonce="<?php echo wp_create_nonce("save-security-settings-nonce"); ?>">Save Security Settings</button>
 	<p id="save-security-settings-ajax-response"></p>
 </article>

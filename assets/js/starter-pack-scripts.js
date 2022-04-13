@@ -23,6 +23,15 @@ jQuery(function($) {
 		});
 	});
 
+	// Show/hide custom MIME input
+	$('#show-custom-mime-input').on('click', function() {
+		if ( $('#custom-mime-wrapper').css('max-height') === '0px' ) {
+			$('#custom-mime-wrapper').css('max-height', '500px');
+		} else {
+			$('#custom-mime-wrapper').css('max-height', '0px');
+		}
+	});
+
 	// Save admin settings
 	var settings = [
 		'enqueue',

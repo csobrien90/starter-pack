@@ -29,6 +29,6 @@
 			<?php
 		}
 	?>
-	<button id="save-enqueue-settings" class="btn btn-primary" data-nonce="<?php echo wp_create_nonce("save-enqueue-settings-nonce"); ?>">Save Enqueue Settings</button>
+	<button id="save-enqueue-settings" class="btn btn-secondary" data-nonce="<?php echo wp_create_nonce("save-enqueue-settings-nonce"); ?>">Save Enqueue Settings</button>
 	<p id="save-enqueue-settings-ajax-response"></p>
 </article>

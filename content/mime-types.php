@@ -118,9 +118,9 @@
 				?>
 				</datalist>
 			</label>
-			<button class="btn btn-primary">Add common MIME type</button>
-			<p id="show-custom-mime-input"><em>White list a custom MIME type</em></p>
-			<div class="custom-mime-wrapper">
+			<button class="btn btn-secondary">Add common MIME type</button>
+			<a href="javascript:void(0);" id="show-custom-mime-input"><em>or white list a custom MIME type</em></a>
+			<div id="custom-mime-wrapper">
 				<p>
 					You can allow upload of any file type but do be aware that many extensions, such as .exe and .zip, can present serious security threats.
 					If you cannot find a filetype in the common MIME types above, you may add a custom MIME type below. For reference, see this list of  
@@ -136,7 +136,7 @@
 					<br>
 					<input type="text" id="custom-mime-desc" name="custom-mime-desc" placeholder="Ex. 'image/png'" />
 				</label>
-				<button class="btn btn-primary">Add custom MIME type</button>
+				<button class="btn btn-secondary">Add custom MIME type</button>
 			</div>
 		</form>
 		<div class="view-and-remove-mime-types">
@@ -148,8 +148,11 @@
 					};
 				?>
 			</select>
-			<button class="btn btn-primary">Remove MIME type</button>
+			<button class="btn btn-secondary">Remove MIME type</button>
 		</div>
 	</div>
-	<button class="btn btn-primary">Save allowed mime types</button>
+	<div class="mime-type-button-wrapper">
+		<button class="btn btn-secondary">Save allowed mime types</button>
+		<button class="btn btn-secondary">Reset default allowed mime types</button>
+	</div>
 </article>
