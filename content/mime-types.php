@@ -94,6 +94,7 @@
 		'pages' => 'application/vnd.apple.pages'
 	];
 	$allowed_mime_types = get_allowed_mime_types();
+	ksort($allowed_mime_types);
 ?>
 
 <article class="mime-type-options">
@@ -108,7 +109,6 @@
 			<h3>Add MIME type</h3>
 			<label>
 				Select from common MIME types:
-				<br>
 				<input type="text" id="common-mime" name="common-mime" list="common-mimes-list" />
 				<datalist id="common-mimes-list">
 				<?php
