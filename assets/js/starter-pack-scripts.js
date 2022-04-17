@@ -1,5 +1,11 @@
 jQuery(function($) {
 
+	/*
+	_________________
+	DOM Manipulation
+	‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+	*/
+
 	// Show/hide admin panels
 	var spSettingsPanels = [
 		'utilities',
@@ -32,7 +38,14 @@ jQuery(function($) {
 		}
 	});
 
-	// Save admin settings
+
+	/*
+	_____________________________________
+	Handle Enqueue and Security Settings
+	‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+	*/
+
+	// Save enqueue and security settings
 	var settings = [
 		'enqueue',
 		'security'
@@ -72,4 +85,89 @@ jQuery(function($) {
 
 		});
 	});
+
+
+	/*
+	__________________________________
+	Handle Allowed Mime Type Settings
+	‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+	*/
+
+	// Add common mime type
+	$('#add-common-mime-type-button').on('click', function(e) {
+		e.preventDefault();
+		var mime_name = $('#common-mime').val();
+		allowed_mime_types[mime_name] = $(`#common-mimes-list [value="${mime_name}"`).data('desc');
+		update_dom_mime_types();
+		const new_option = document.querySelector(`#current-allowed-mime-types [data-desc="${allowed_mime_types[mime_name]}"`);
+		new_option.scrollIntoView();
+		new_option.selected = true;
+	});
+
+	// Add custom mime type (confirm first)
+	$('#add-custom-mime-type-button').on('click', function(e) {
+		e.preventDefault();
+		var mime_name = $('#custom-mime-name').val();
+		allowed_mime_types[mime_name] = $('#custom-mime-desc').val();
+		update_dom_mime_types();
+		const new_option = document.querySelector(`#current-allowed-mime-types [data-desc="${allowed_mime_types[mime_name]}"`);
+		new_option.scrollIntoView();
+		new_option.selected = true;
+	});
+
+	// Remove currently allowed mime type (single or multiple)
+	$('#remove-mime-type-button').on('click', function(e) {
+		e.preventDefault();
+		delete allowed_mime_types[$('#current-allowed-mime-types').val()];
+		update_dom_mime_types();
+	});
+
+	function update_dom_mime_types() {
+		var current_mimes_html = '';
+		for (var mime_description in allowed_mime_types) {
+			current_mimes_html += `<option data-desc="${allowed_mime_types[mime_description]}">${mime_description}</option>`;
+		}
+		document.querySelector('#current-allowed-mime-types').innerHTML = current_mimes_html;
+	}
+
+	// Save new allowed mime types
+	$(`#save-mime-type-settings`).on('click', function(e) {
+		e.preventDefault();
+		save_mime_type_settings( allowed_mime_types );
+	});
+
+	// Reset allowed mime types to default configuration
+
+	$(`#reset-mime-type-settings`).on('click', function(e) {
+		e.preventDefault();
+		save_mime_type_settings( common_mime_types );
+	});
+
+	// Make ajax call to save settings
+	function save_mime_type_settings( settings_array ) {
+		var formData = {
+			'action': `save_mime_type_settings`,
+			'nonce': $(`#save-mime-type-settings`).attr('data-nonce'),
+			'settings': settings_array
+		};
+		$.ajax({
+			method : "post",
+			datatype : "json",
+			url : jsVars.ajaxUrl,
+			data : formData,
+			success: function(response) {
+				if ( response.message ) {
+					$(`#save-mime-type-settings-ajax-response`).text(response.message).show()	;
+					setTimeout(() => {
+						$(`#save-mime-type-settings-ajax-response`).fadeOut(800);
+					}, 2000);
+				} else {
+					console.log(response);
+				};
+			}
+		});
+	}
+
+
+
 });

@@ -93,6 +93,7 @@
 		'numbers' => 'application/vnd.apple.numbers',
 		'pages' => 'application/vnd.apple.pages'
 	];
+	$local_nonce = wp_create_nonce("save-mime-type-settings-nonce");
 
 	$allowed_mime_types = get_option('sp_allowed_mime_types');
 	if ( !$allowed_mime_types ) {
@@ -100,7 +101,8 @@
 		$allowed_mime_types = $common_mime_types;
 	};
 	ksort($allowed_mime_types);
-	
+
+	php_to_js($common_mime_types, 'common_mime_types');
 	php_to_js($allowed_mime_types, 'allowed_mime_types');
 ?>
 <article class="mime-type-options">
@@ -118,13 +120,13 @@
 				<input type="text" id="common-mime" name="common-mime" list="common-mimes-list" />
 				<datalist id="common-mimes-list">
 				<?php
-					foreach ( $common_mime_types as $mime_name => $$mime_desc ) {
+					foreach ( $common_mime_types as $mime_name => $mime_desc ) {
 						echo '<option data-desc="'.$mime_desc.'" value="'.$mime_name.'"></option>';
 					};
 				?>
 				</datalist>
 			</label>
-			<button class="btn btn-secondary">Add common MIME type</button>
+			<button class="btn btn-secondary" id="add-common-mime-type-button">Add common MIME type</button>
 			<a href="javascript:void(0);" id="show-custom-mime-input"><em>or white list a custom MIME type</em></a>
 			<div id="custom-mime-wrapper">
 				<p>
@@ -142,23 +144,24 @@
 					<br>
 					<input type="text" id="custom-mime-desc" name="custom-mime-desc" placeholder="Ex. 'image/png'" />
 				</label>
-				<button class="btn btn-secondary">Add custom MIME type</button>
+				<button class="btn btn-secondary" id="add-custom-mime-type-button">Add custom MIME type</button>
 			</div>
 		</form>
 		<div class="view-and-remove-mime-types">
 			<h3>Remove MIME type</h3>
-			<select class="current-allowed-mime-types" size="10">
+			<select id="current-allowed-mime-types" size="10">
 				<?php
 					foreach ( $allowed_mime_types as $mime_name => $$mime_desc ) {
 						echo '<option data-desc="'.$mime_desc.'">'.$mime_name.'</option>';
 					};
 				?>
 			</select>
-			<button class="btn btn-secondary">Remove MIME type</button>
+			<button class="btn btn-secondary" id="remove-mime-type-button">Remove MIME type</button>
 		</div>
 	</div>
 	<div class="mime-type-button-wrapper">
-		<button class="btn btn-secondary">Save allowed mime types</button>
-		<button class="btn btn-secondary">Reset default allowed mime types</button>
+		<button class="btn btn-secondary" id="save-mime-type-settings" data-nonce="<?= $local_nonce ?>">Save allowed mime types</button>
+		<button class="btn btn-secondary" id="reset-mime-type-settings" data-nonce="<?= $local_nonce ?>">Reset default allowed mime types</button>
+		<p id="save-mime-type-settings-ajax-response"></p>
 	</div>
 </article>
