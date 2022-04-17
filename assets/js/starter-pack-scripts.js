@@ -13,10 +13,10 @@ jQuery(function($) {
 		$(`#${section}-link`).on('click', function() {
 			spSettingsPanels.forEach(panel => {
 				if ( panel === section ) {
-					$(`#${panel}`).show();
+					$(`#${panel}`).show().css('position', 'unset');
 					$(`#${panel}-link`).addClass('nav-tab-active');
 				} else {
-					$(`#${panel}`).hide();
+					$(`#${panel}`).hide().css('position', 'absolute');
 					$(`#${panel}-link`).removeClass('nav-tab-active');
 				}
 			});
