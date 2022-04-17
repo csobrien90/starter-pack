@@ -93,8 +93,14 @@
 		'numbers' => 'application/vnd.apple.numbers',
 		'pages' => 'application/vnd.apple.pages'
 	];
-	$allowed_mime_types = get_allowed_mime_types();
+
+	$allowed_mime_types = get_option('sp_allowed_mime_types');
+	if ( !$allowed_mime_types ) {
+		update_option('sp_allowed_mime_types', $common_mime_types);
+		$allowed_mime_types = $common_mime_types;
+	};
 	ksort($allowed_mime_types);
+	
 	php_to_js($allowed_mime_types, 'allowed_mime_types');
 ?>
 <article class="mime-type-options">

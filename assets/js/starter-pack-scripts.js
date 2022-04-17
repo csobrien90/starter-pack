@@ -13,7 +13,7 @@ jQuery(function($) {
 		$(`#${section}-link`).on('click', function() {
 			spSettingsPanels.forEach(panel => {
 				if ( panel === section ) {
-					$(`#${panel}`).show().css('position', 'unset');
+					$(`#${panel}`).show().css('position', 'relative');
 					$(`#${panel}-link`).addClass('nav-tab-active');
 				} else {
 					$(`#${panel}`).hide().css('position', 'absolute');
