@@ -10,6 +10,11 @@ function log_this( $var ) {
     echo '<script>console.log('.json_encode($var).')</script>';
 }
 
+function php_to_js( $var, $new_var_name = 'a', $new_var_type = 'var' ) {
+    if ( !in_array ($new_var_type, ['let', 'var', 'const']) ) log_this('invalid declaration from php_to_js call');
+    echo "<script>$new_var_type $new_var_name = ".json_encode($var).'</script>';
+}
+
 function deep_search( $search_term, $array_or_object ) {
 
     function find_in_array( $search_term, $array ) {

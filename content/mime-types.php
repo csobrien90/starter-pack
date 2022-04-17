@@ -95,8 +95,8 @@
 	];
 	$allowed_mime_types = get_allowed_mime_types();
 	ksort($allowed_mime_types);
+	php_to_js($allowed_mime_types, 'allowed_mime_types');
 ?>
-
 <article class="mime-type-options">
 	<h2>Mime Types</h2>
 	<p class="mime-type-description">
