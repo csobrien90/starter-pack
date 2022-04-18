@@ -144,9 +144,10 @@ button {
 .admin-content-wrapper #mime-types .mime-type-button-wrapper button {
   margin: 0.5rem;
 }
-.admin-content-wrapper #mime-types .mime-type-button-wrapper .save-mime-type-settings-ajax-response {
+.admin-content-wrapper #mime-types .mime-type-button-wrapper #save-mime-type-settings-ajax-response {
   flex-basis: 100%;
   text-align: center;
+  font-style: italic;
 }
 
 /*# sourceMappingURL=starter-pack-styles.css.map */
