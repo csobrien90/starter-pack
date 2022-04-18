@@ -93,6 +93,7 @@ button {
   display: none;
 }
 .admin-content-wrapper .security-options .security-functions-list {
+  padding-left: 1rem;
   margin: 2rem 0;
 }
 .admin-content-wrapper .security-options .security-functions-list .security-function {
