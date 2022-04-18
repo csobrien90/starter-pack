@@ -124,7 +124,10 @@ jQuery(function($) {
 	// Remove currently allowed mime type (single or multiple)
 	$('#remove-mime-type-button').on('click', function(e) {
 		e.preventDefault();
-		delete allowed_mime_types[$('#current-allowed-mime-types').val()];
+		var mimes_to_remove = $('#current-allowed-mime-types').val();
+		for (let mime of mimes_to_remove) {
+			delete allowed_mime_types[mime];
+		}
 		update_dom_mime_types();
 	});
 
