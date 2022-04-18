@@ -168,6 +168,4 @@ jQuery(function($) {
 		});
 	}
 
-
-
 });
