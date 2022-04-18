@@ -119,6 +119,7 @@ button {
   font-weight: bold;
 }
 .admin-content-wrapper #mime-types .mime-type-input #custom-mime-wrapper {
+  display: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s;
@@ -132,15 +133,20 @@ button {
   display: flex;
   flex-direction: column;
 }
-.admin-content-wrapper #mime-types .view-and-remove-mime-types .current-allowed-mime-types {
+.admin-content-wrapper #mime-types .view-and-remove-mime-types #current-allowed-mime-types {
   width: 100%;
 }
 .admin-content-wrapper #mime-types .mime-type-button-wrapper {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .admin-content-wrapper #mime-types .mime-type-button-wrapper button {
   margin: 0.5rem;
+}
+.admin-content-wrapper #mime-types .mime-type-button-wrapper .save-mime-type-settings-ajax-response {
+  flex-basis: 100%;
+  text-align: center;
 }
 
 /*# sourceMappingURL=starter-pack-styles.css.map */

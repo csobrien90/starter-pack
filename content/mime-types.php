@@ -100,6 +100,8 @@
 		update_option('sp_allowed_mime_types', $common_mime_types);
 		$allowed_mime_types = $common_mime_types;
 	};
+
+	ksort($common_mime_types);
 	ksort($allowed_mime_types);
 
 	php_to_js($common_mime_types, 'common_mime_types');
@@ -149,7 +151,7 @@
 		</form>
 		<div class="view-and-remove-mime-types">
 			<h3>Remove MIME type</h3>
-			<select id="current-allowed-mime-types" size="10">
+			<select id="current-allowed-mime-types" size="10" multiple>
 				<?php
 					foreach ( $allowed_mime_types as $mime_name => $$mime_desc ) {
 						echo '<option data-desc="'.$mime_desc.'">'.$mime_name.'</option>';

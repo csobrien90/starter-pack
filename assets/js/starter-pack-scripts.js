@@ -33,8 +33,14 @@ jQuery(function($) {
 	$('#show-custom-mime-input').on('click', function() {
 		if ( $('#custom-mime-wrapper').css('max-height') === '0px' ) {
 			$('#custom-mime-wrapper').css('max-height', '500px');
+			setTimeout(() => {
+				$('#custom-mime-wrapper').css('display', 'block');
+			}, 500);
 		} else {
 			$('#custom-mime-wrapper').css('max-height', '0px');
+			setTimeout(() => {
+				$('#custom-mime-wrapper').css('display', 'none');
+			}, 500);
 		}
 	});
 
@@ -141,6 +147,8 @@ jQuery(function($) {
 	$(`#reset-mime-type-settings`).on('click', function(e) {
 		e.preventDefault();
 		save_mime_type_settings( common_mime_types );
+		allowed_mime_types = common_mime_types;
+		update_dom_mime_types();
 	});
 
 	// Make ajax call to save settings
