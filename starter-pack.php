@@ -20,7 +20,28 @@ require_once 'functions.php';
 
 function starter_pack_activate() {
 	if ( !current_user_can('activate_plugins') ) return;
-    // Activation Code
+    
+	// Create testing page
+	global $wpdb;
+	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	
+	if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'dev-testing-ground'", 'ARRAY_A' ) ) {
+	
+		$current_user = wp_get_current_user();
+		
+		// create post object
+		$page = array(
+			'post_title'  	=>	'Dev Testing Ground',
+			'post_status' 	=>	'publish',
+			'post_author' 	=>	$current_user->ID,
+			'post_type'   	=>	'page',
+			'post_content'	=>	''
+		);
+		
+		// insert the post into the database
+		wp_insert_post( $page );
+	}
+
 }
 register_activation_hook(__FILE__, 'starter_pack_activate');
 
