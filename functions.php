@@ -8,7 +8,7 @@ require_once 'functions/security.php';
 function dev_testing_ground_page_template( $page_template )
 {
     if ( is_page( 'dev-testing-ground' ) ) {
-        $page_template = dirname( __FILE__ ) . '/dev-testing-ground-page.php';
+        $page_template = dirname( __FILE__ ) . '/page-dev-testing-ground.php';
     }
     return $page_template;
 }
