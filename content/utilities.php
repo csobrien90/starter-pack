@@ -1,6 +1,7 @@
 <article class="about-this-plugin">
     <h2>About this plugin</h2>
-    <p>Plugin description, repo link, credits, etc. will go here.</p>
+    <p>Plugin description and features</p>
+    <p>Repo links and credits</p>
 </article>
 <article class="utility-functions">
     <h2>Utility functions</h2>

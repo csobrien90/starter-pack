@@ -4,8 +4,12 @@ function starter_pack_enqueue_scripts() {
 	$enqueue_settings = get_option('sp_enqueue_settings') ?: [];
 
 	wp_enqueue_style( 'starter_pack_styles', plugins_url().'/starter-pack/assets/css/starter-pack-styles.css' );
-	wp_enqueue_script( 'starter_pack_js', plugins_url().'/starter-pack/assets/js/starter-pack-scripts.js', array(), false, true );
+	wp_enqueue_script( 'starter_pack_js', plugins_url().'/starter-pack/assets/js/starter-pack-scripts.js', array('jquery'), false, true );
 	wp_localize_script( 'starter_pack_js', 'jsVars', array( 'ajaxUrl' => admin_url( 'admin-ajax.php' ) ) );
+
+	wp_enqueue_script( 'substitute_login_js', plugins_url().'/starter-pack/assets/js/substitute-login-scripts.js', array('jquery'), false, true );
+	wp_localize_script( 'substitute_login_js', 'jsVars', array( 'ajaxUrl' => admin_url( 'admin-ajax.php' ), 'redirectUrl' => home_url() ) );
+	
 	wp_enqueue_style( 'dashicons' );
 
 	if ( in_array( 'bootstrap', $enqueue_settings ) ) {
