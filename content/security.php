@@ -84,6 +84,24 @@
 				bots and scrapers trying to break into your site. By default, if your permalinks are set to post name, the substitute login page can be found at 
 				yoursite.com/login-sub. Or, use the input below to set the slug for your login page.
 			</p>
+			<div class="substite-login-settings-wrapper">
+				<label for="substitute-login-slug">
+					Set custom login slug<br>
+					<input type="text" id="substitute-login-slug" name="substitute-login-slug" />
+				</label>
+				<label for="substitute-login-redirect">
+					Set redirect url<br>
+					<select type="text" id="substitute-login-redirect" name="substitute-login-redirect">
+						<option value="admin">Administrative console</option>
+						<option value="home">Home page</option>
+						<option value="custom">Custom</option>
+					</select>
+				</label>
+				<label for="substitute-login-redirect-custom">
+					Custom redirect url<br>
+					<input type="text" id="substitute-login-redirect-custom" name="substitute-login-redirect-custom" />
+				</label>
+			</div>
 		</li>
 	</ul>
 	<button id="save-security-settings" class="btn btn-secondary" data-nonce="<?php echo wp_create_nonce("save-security-settings-nonce"); ?>">Save Security Settings</button>

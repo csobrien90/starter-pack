@@ -44,6 +44,15 @@ jQuery(function($) {
 		}
 	});
 
+	// Show/hide login security settings
+	$('#substitute_login').on('change', function() {
+		if ( this.checked ) {
+			$('.substite-login-settings-wrapper').show();
+		} else {
+			$('.substite-login-settings-wrapper').hide();
+		}
+	})
+
 
 	/*
 	_____________________________________
@@ -72,6 +81,15 @@ jQuery(function($) {
 				'nonce': $(`#save-${setting}-settings`).attr('data-nonce'),
 				'settings': inputArray
 			};
+
+			if ( setting === 'security' && document.querySelector('#substitute_login').checked ) {
+				formData.loginSlug = $('#substitute-login-slug').val();
+				formData.loginRedirect = $('#substitute-login-redirect').val();
+				if ( formData.loginRedirect === 'custom' ) {
+					formData.customRedirect = $('#substitute-login-redirect-custom').val();
+				}
+			}
+
 			$.ajax({
 				method : "post",
 				datatype : "json",

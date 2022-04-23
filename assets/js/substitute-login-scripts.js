@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-		
+	
 	/*
 	_____________________
 	Substitute Login Page

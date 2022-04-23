@@ -103,6 +103,14 @@ button {
   margin-left: 4.5rem;
   margin-bottom: 0.2rem;
 }
+.admin-content-wrapper .security-options .security-functions-list .security-function .substite-login-settings-wrapper {
+  display: none;
+  margin-left: 4.5rem;
+  margin-bottom: 0.2rem;
+}
+.admin-content-wrapper .security-options .security-functions-list .security-function .substite-login-settings-wrapper label {
+  margin: 1rem 1rem 0 0;
+}
 .admin-content-wrapper .enqueue-options .switch-wrapper {
   margin: 1.5rem 1rem;
 }

@@ -42,6 +42,23 @@ function save_security_settings() {
 		foreach ( $_POST['settings'] as $value ) {
 			$settings[] = sanitize_text_field($value);
 		}
+		if ( in_array('substitute_login', $settings) ) {
+			if ( isset($_POST['loginSlug']) ) {
+				$slug = sanitize_text_field($_POST['loginSlug']);
+				update_option( 'sp_login_slug', $slug );
+				// Update login-sub page permalink
+				wp_update_post( array(
+					'post_title'  	=>	'SP Login',
+					'post_name'		=>	$slug,
+				) );
+			}
+			if ( isset($_POST['loginRedirect']) ) {
+				update_option( 'sp_login_redirect', sanitize_text_field($_POST['loginRedirect']) );
+			}
+			if ( isset($_POST['customRedirect']) ) {
+				update_option( 'sp_custom_redirect', sanitize_url($_POST['customRedirect']) );
+			}
+		}
 		$result = update_option( 'sp_security_settings', $settings );
 		if ( $result ) {
 			$output->message = 'Security settings saved successfully.';

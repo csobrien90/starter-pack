@@ -42,6 +42,27 @@ function starter_pack_activate() {
 		wp_insert_post( $page );
 	}
 
+	if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'login-sub'", 'ARRAY_A' ) ) {
+	
+		$current_user = wp_get_current_user();
+		
+		// create post object
+		$page = array(
+			'post_title'  	=>	'SP Login',
+			'post_name'		=>	'login-sub',
+			'post_status' 	=>	'publish',
+			'post_author' 	=>	$current_user->ID,
+			'post_type'   	=>	'page',
+			'post_content'	=>	''
+		);
+		
+		// insert the post into the database
+		wp_insert_post( $page );
+	}
+
+	// Set default options
+	update_option( 'sp_login_slug', 'login-sub' );
+
 }
 register_activation_hook(__FILE__, 'starter_pack_activate');
 
