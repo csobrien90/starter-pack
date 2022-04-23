@@ -17,7 +17,7 @@
 					<span class="slider round"></span>
 				</div>
 				<span class="switch-label">
-					force_subscriber_role_on_registration()
+					Force Subscriber Role on Registration
 				</span>
 			</label>
 			<p><em>Force all new users to register as the 'subscriber' role.</em></p>
@@ -39,7 +39,7 @@
 					<span class="slider round"></span>
 				</div>
 				<span class="switch-label">
-					registration_password_strength()
+					Enforce Password Strength on Registration
 				</span>
 			</label>
 			<p><em>Require all new users to register with a sufficiently strong password.</em></p>
@@ -59,10 +59,31 @@
 					<span class="slider round"></span>
 				</div>
 				<span class="switch-label">
-					disable_comments()
+					Disable Comments
 				</span>
 			</label>
 			<p><em>Remove all comment functionality</em></p>
+		</li>
+		<li class="security-function">
+			<label for="substitute_login" class="switch-wrapper">
+				<div class="switch">
+					<input
+						type="checkbox"
+						id="substitute_login"
+						name="substitute_login"
+						<?php $checked = in_array( 'substitute_login', $security_settings ) ? 'checked' : ''; echo $checked; ?>
+					>
+					<span class="slider round"></span>
+				</div>
+				<span class="switch-label">
+					Substitute Login
+				</span>
+			</label>
+			<p><em>Block site login from the wp-login and wp-admin pages and add a unique login page</em></p>
+			<p>This is not a foolproof security measure to protect your login process, but it will at least obscure your login process and greatly reduce the number of 
+				bots and scrapers trying to break into your site. By default, if your permalinks are set to post name, the substitute login page can be found at 
+				yoursite.com/login-sub. Or, use the input below to set the slug for your login page.
+			</p>
 		</li>
 	</ul>
 	<button id="save-security-settings" class="btn btn-secondary" data-nonce="<?php echo wp_create_nonce("save-security-settings-nonce"); ?>">Save Security Settings</button>

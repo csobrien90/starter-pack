@@ -1,4 +1,7 @@
 <?php
+    $security_settings = get_option('sp_security_settings') ?: [];
+    if ( !in_array('substitute_login', $security_settings) ) wp_safe_redirect( home_url() );
+    
     wp_head();
 ?>
 

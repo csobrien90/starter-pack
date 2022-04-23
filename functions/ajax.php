@@ -88,26 +88,31 @@ add_action( "wp_ajax_save_mime_type_settings", "save_mime_type_settings" );
 add_action( "wp_ajax_nopriv_save_mime_type_settings", "save_mime_type_settings" );
 
 
-
+$security_settings = get_option('sp_security_settings') ?: [];
 function sp_substitute_login() {
 	// Verify nonce
 	if ( !wp_verify_nonce( $_POST['nonce'], "substitute-login-nonce")) {
 		exit();
 	}
 
-    // Nonce is checked, get the POST data and sign user on
-    $info = array();
+	$output = new stdClass();
+    $info = [];
+
     $info['user_login'] = $_POST['username'];
     $info['user_password'] = $_POST['password'];
     $info['remember'] = true;
 
-    $user_signon = wp_signon( $info, false );
+    $user_signon = wp_signon( $info, true );
     if ( is_wp_error($user_signon) ){
-        echo json_encode(array('loggedin'=>false, 'message'=>__('Wrong username or password.')));
+        $output->loggedin = false;
+		$output->message = 'Wrong username or password.';
     } else {
-        echo json_encode(array('loggedin'=>true, 'message'=>__('Login successful, redirecting...')));
+		$output->loggedin = true;
+		$output->message = 'Login successful, redirecting...';
     }
 
-    die();
+	wp_send_json( $output );
 }
-add_action( "wp_ajax_nopriv_sp_substitute_login", "sp_substitute_login" );
+if ( in_array('substitute_login', $security_settings) ) {
+	add_action( "wp_ajax_nopriv_sp_substitute_login", "sp_substitute_login" );
+}
