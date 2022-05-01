@@ -1,6 +1,6 @@
 <header class="wrap">
     <h1 class="wp-heading-inline">Starter Pack Options</h1>
-    <p><em>Jumpstart devving on any WordPress site with these starter functions.</em></p>
+    <p><em>Jumpstart devving on any WordPress site.</em></p>
     <hr>
 </header>
 <main>
