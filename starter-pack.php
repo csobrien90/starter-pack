@@ -39,7 +39,7 @@ function starter_pack_activate() {
 		);
 		
 		// insert the post into the database
-		wp_insert_post( $page );
+		$dev_testing_ground_post_id = wp_insert_post( $page );
 	}
 
 	if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'login-sub'", 'ARRAY_A' ) ) {
@@ -61,6 +61,7 @@ function starter_pack_activate() {
 	}
 
 	// Set default options
+	update_option( 'sp_dev_testing_ground_page_id', $dev_testing_ground_post_id );
 	update_option( 'sp_login_page_id', $login_sub_post_id );
 	update_option( 'sp_login_slug', 'login-sub' );
 
