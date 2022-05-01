@@ -18,20 +18,22 @@
     wp_head();
 ?>
 
-<form class="login">
-    <h1>Login</h1>
-    <p id="login-loading-message"></p>
-    <label for="username">
-        Username
-        <input id="username" type="text" name="username">
-    </label>
-    <label for="password">
-        Password
-        <input id="password" type="password" name="password">
-    </label>
-    <button id="login-button" data-nonce="<?php echo wp_create_nonce("substitute-login-nonce"); ?>">Login</button>
-    <a class="lost" href="<?php echo wp_lostpassword_url(); ?>">Lost your password?</a>
-</form>
+<main class="login-sub-page">
+    <h1><?php the_title(); ?></h1>
+    <form class="login">
+        <p id="login-loading-message"></p>
+        <label for="username">
+            Username<br>
+            <input id="username" type="text" name="username">
+        </label>
+        <label for="password">
+            Password<br>
+            <input id="password" type="password" name="password">
+        </label>
+        <button id="login-button" data-nonce="<?php echo wp_create_nonce("substitute-login-nonce"); ?>">Login</button>
+        <a class="lost" href="<?php echo wp_lostpassword_url(); ?>">Lost your password?</a>
+    </form>
+</main>
 
 <?php
     wp_footer();
