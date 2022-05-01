@@ -1,11 +1,24 @@
 <?php
     $security_settings = get_option('sp_security_settings') ?: [];
-    if ( !in_array('substitute_login', $security_settings) ) wp_safe_redirect( home_url() );
+    if ( !in_array('substitute_login', $security_settings) ) wp_redirect( home_url() );
+    switch ( get_option('sp_login_redirect') ) {
+        case 'home' :
+            $redirect_url = home_url();
+            break;
+        case 'custom' :
+            $redirect_url = get_option('sp_custom_redirect');
+            break;
+        case 'admin' :
+        default:
+            $redirect_url = admin_url();
+            break;
+    }
+    if ( is_user_logged_in() ) wp_redirect( $redirect_url );
     
     wp_head();
 ?>
 
-<form>
+<form class="login">
     <h1>Login</h1>
     <p id="login-loading-message"></p>
     <label for="username">

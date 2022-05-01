@@ -39,28 +39,33 @@ function save_security_settings() {
 
 	if ( isset($_POST['settings']) && !empty($_POST['settings']) && is_array($_POST['settings']) ) {
 		$settings = [];
+		$success = false;
 		foreach ( $_POST['settings'] as $value ) {
 			$settings[] = sanitize_text_field($value);
 		}
 		if ( in_array('substitute_login', $settings) ) {
 			if ( isset($_POST['loginSlug']) ) {
 				$slug = sanitize_text_field($_POST['loginSlug']);
-				update_option( 'sp_login_slug', $slug );
+				$update_result = update_option( 'sp_login_slug', $slug );
+				if ( $update_result ) $success = true;
 				// Update login-sub page permalink
 				wp_update_post( array(
-					'post_title'  	=>	'SP Login',
-					'post_name'		=>	$slug,
+					'ID'		=> get_option( 'sp_login_page_id' ),
+					'post_name'	=> $slug,
 				) );
 			}
 			if ( isset($_POST['loginRedirect']) ) {
-				update_option( 'sp_login_redirect', sanitize_text_field($_POST['loginRedirect']) );
+				$update_result = update_option( 'sp_login_redirect', sanitize_text_field($_POST['loginRedirect']) );
+				if ( $update_result ) $success = true;
 			}
 			if ( isset($_POST['customRedirect']) ) {
-				update_option( 'sp_custom_redirect', sanitize_url($_POST['customRedirect']) );
+				$update_result = update_option( 'sp_custom_redirect', htmlspecialchars($_POST['customRedirect']) );
+				if ( $update_result ) $success = true;
 			}
 		}
-		$result = update_option( 'sp_security_settings', $settings );
-		if ( $result ) {
+		$update_result = update_option( 'sp_security_settings', $settings );
+		if ( $update_result ) $success = true;
+		if ( $success ) {
 			$output->message = 'Security settings saved successfully.';
 		} else {
 			$output->message = 'Unable to save security settings. Confirm settings have been changed and try again.';

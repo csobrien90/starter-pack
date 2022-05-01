@@ -57,10 +57,11 @@ function starter_pack_activate() {
 		);
 		
 		// insert the post into the database
-		wp_insert_post( $page );
+		$login_sub_post_id = wp_insert_post( $page );
 	}
 
 	// Set default options
+	update_option( 'sp_login_page_id', $login_sub_post_id );
 	update_option( 'sp_login_slug', 'login-sub' );
 
 }

@@ -1,5 +1,8 @@
 <?php 
 	$security_settings = get_option('sp_security_settings') ?: [];
+	$login_slug = get_option( 'sp_login_slug' ) ?: '';
+	$login_redirect = get_option( 'sp_login_redirect' ) ?: '';
+	$custom_redirect = get_option( 'sp_custom_redirect' ) ?: '';
 ?>
 
 <article class="security-options">
@@ -71,7 +74,7 @@
 						type="checkbox"
 						id="substitute_login"
 						name="substitute_login"
-						<?php $checked = in_array( 'substitute_login', $security_settings ) ? 'checked' : ''; echo $checked; ?>
+						<?php echo in_array( 'substitute_login', $security_settings ) ? 'checked' : ''; ?>
 					>
 					<span class="slider round"></span>
 				</div>
@@ -82,24 +85,24 @@
 			<p><em>Block site login from the wp-login and wp-admin pages and add a unique login page</em></p>
 			<p>This is not a foolproof security measure to protect your login process, but it will at least obscure your login process and greatly reduce the number of 
 				bots and scrapers trying to break into your site. By default, if your permalinks are set to post name, the substitute login page can be found at 
-				yoursite.com/login-sub. Or, use the input below to set the slug for your login page.
+				yoursite.com/login-sub. Or, turn the setting on and use the input that appears below to set the slug for your login page.
 			</p>
-			<div class="substite-login-settings-wrapper">
+			<div class="substite-login-settings-wrapper" style="display: <?php echo in_array( 'substitute_login', $security_settings ) ? 'block' : 'none'; ?>">
 				<label for="substitute-login-slug">
 					Set custom login slug<br>
-					<input type="text" id="substitute-login-slug" name="substitute-login-slug" />
+					<input type="text" id="substitute-login-slug" name="substitute-login-slug" value="<?= $login_slug ?>"/>
 				</label>
 				<label for="substitute-login-redirect">
 					Set redirect url<br>
 					<select type="text" id="substitute-login-redirect" name="substitute-login-redirect">
-						<option value="admin">Administrative console</option>
-						<option value="home">Home page</option>
-						<option value="custom">Custom</option>
+						<option value="admin" <?php echo $login_redirect === 'admin' ? 'selected' : ''; ?>>Administrative console</option>
+						<option value="home" <?php echo $login_redirect === 'home' ? 'selected' : ''; ?>>Home page</option>
+						<option value="custom" <?php echo $login_redirect === 'custom' ? 'selected' : ''; ?>>Custom</option>
 					</select>
 				</label>
 				<label for="substitute-login-redirect-custom">
 					Custom redirect url<br>
-					<input type="text" id="substitute-login-redirect-custom" name="substitute-login-redirect-custom" />
+					<input type="text" id="substitute-login-redirect-custom" name="substitute-login-redirect-custom" value="<?= $custom_redirect ?>"/>
 				</label>
 			</div>
 		</li>

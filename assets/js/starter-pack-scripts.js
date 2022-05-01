@@ -85,9 +85,7 @@ jQuery(function($) {
 			if ( setting === 'security' && document.querySelector('#substitute_login').checked ) {
 				formData.loginSlug = $('#substitute-login-slug').val();
 				formData.loginRedirect = $('#substitute-login-redirect').val();
-				if ( formData.loginRedirect === 'custom' ) {
-					formData.customRedirect = $('#substitute-login-redirect-custom').val();
-				}
+				formData.customRedirect = $('#substitute-login-redirect-custom').val();
 			}
 
 			$.ajax({

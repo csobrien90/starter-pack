@@ -7,7 +7,7 @@ function starter_pack_enqueue_scripts() {
 	wp_enqueue_script( 'starter_pack_js', plugins_url().'/starter-pack/assets/js/starter-pack-scripts.js', array('jquery'), false, true );
 	wp_localize_script( 'starter_pack_js', 'jsVars', array( 'ajaxUrl' => admin_url( 'admin-ajax.php' ) ) );
 
-	$login_redirect = get_option('sp_login_redirect') ?: admin_url();
+	$login_redirect = get_option('sp_login_redirect') ?: '/wp-admin';
 	wp_enqueue_script( 'substitute_login_js', plugins_url().'/starter-pack/assets/js/substitute-login-scripts.js', array('jquery'), false, true );
 	wp_localize_script( 'substitute_login_js', 'jsVars', array( 'ajaxUrl' => admin_url( 'admin-ajax.php' ), 'redirectUrl' => $login_redirect ) );
 	
