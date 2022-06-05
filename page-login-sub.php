@@ -20,7 +20,7 @@
 
 <main class="login-sub-page">
     <h1><?php the_title(); ?></h1>
-    <form class="login">
+    <form class="login" id="loginform">
         <p id="login-loading-message"></p>
         <label for="username">
             Username<br>

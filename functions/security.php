@@ -101,3 +101,11 @@ function sp_allow_mime_types( $mime_types ) {
 	return $mime_types;
 }
 add_filter( 'upload_mimes', 'sp_allow_mime_types' );
+
+function block_wp_login() {
+	$settings = get_option('sp_security_settings') ?: [];
+	if ( in_array('substitute_login', $settings) ) {
+		wp_redirect( home_url() );
+	}
+}
+add_action( 'login_enqueue_scripts', 'block_wp_login', 1 );
