@@ -197,10 +197,44 @@ main.login-sub-page h1 {
 main.login-sub-page form.login {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+main.login-sub-page form.login #login-loading-message-wrapper {
+  display: none;
+  position: absolute;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 3rem;
+  font-size: 6rem;
+}
+main.login-sub-page form.login #login-loading-message-wrapper #login-loading-message {
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 main.login-sub-page form.login button {
   max-width: fit-content;
   margin: 1rem 0;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }
 
 /*# sourceMappingURL=starter-pack-styles.css.map */

@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 	// Perform AJAX login on form submit
 	$('#login-button').on('click', function(e){
 		e.preventDefault();
-		$('#login-loading-message').text('loading');
+		$('#login-loading-message-wrapper').show();
 		var formData = {
 			'action': 'sp_substitute_login',
 			'nonce': $(`#login-button`).attr('data-nonce'),
@@ -21,11 +21,16 @@ jQuery(document).ready(function($) {
 			dataType: 'json',
 			url: jsVars.ajaxUrl,
 			data: formData,
-			success: function(data){
+			success: function(data) {
+				$('#login-loading-message-wrapper').hide();
 				$('form#login p.status').text(data.message);
 				if (data.loggedin == true){
 					document.location.href = jsVars.redirectUrl;
 				}
+			},
+			error: function(data) {
+				$('#login-loading-message-wrapper').hide();
+				console.log(data);
 			}
 		});
 	});
