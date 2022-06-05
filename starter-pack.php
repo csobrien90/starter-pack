@@ -69,7 +69,26 @@ function starter_pack_activate() {
 register_activation_hook(__FILE__, 'starter_pack_activate');
 
 function starter_pack_deactivate() {
-	//Deactivation code
+	// Remove plugin pages
+	wp_delete_post( get_option( 'sp_dev_testing_ground_page_id' ), 1 );
+	wp_delete_post( get_option( 'sp_login_page_id' ), 1 );
+
+	// Remove settings options
+	$settings_options = [
+		'sp_dev_testing_ground_page_id',
+		'sp_login_page_id',
+		'sp_login_slug',
+		'sp_login_redirect',
+		'sp_custom_redirect',		
+		'sp_allowed_mime_types',
+		'sp_security_settings',
+		'sp_enqueue_settings',
+	];
+	
+	foreach ( $settings_options as $option ) {
+		delete_option( $option );
+	}
+	
 }
 register_deactivation_hook(__FILE__, 'starter_pack_deactivate');
 
