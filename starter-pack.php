@@ -7,7 +7,7 @@ Plugin URI:
 Description: A WordPress plugin to jumpstart devving on any WordPress site
 Author: Chad O'Brien
 Author URI: https://github.com/csobrien90
-Version: 0.1
+Version: 1.0
 Text Domain: plugin-starter-pack
 License: GPL v3
 Requires PHP: 7.2

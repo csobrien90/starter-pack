@@ -7,7 +7,8 @@
 		'axios',
 		'chart.js',
 		'lodash',
-		'moment.js'
+		'moment.js',
+		'datatables'
 	];
 ?>
 

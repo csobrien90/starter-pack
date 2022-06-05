@@ -51,6 +51,11 @@ function starter_pack_enqueue_scripts() {
 		wp_deregister_script('moment');
 		wp_enqueue_script( 'moment', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js' );
 	}
+
+	if ( in_array( 'datatables', $enqueue_settings ) ) {
+		wp_enqueue_style('datatables_css', 'https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css' );
+		wp_enqueue_script( 'datatables_js', 'https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js', ['jquery'] );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'starter_pack_enqueue_scripts' );
 add_action( 'admin_enqueue_scripts', 'starter_pack_enqueue_scripts' );
